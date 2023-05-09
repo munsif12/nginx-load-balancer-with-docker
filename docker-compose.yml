@@ -19,6 +19,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    container_name: nodejs-app-1
     ports:
       - '81:5000'
     networks:
@@ -31,6 +32,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+    container_name: nodejs-app-2
     environment:
       - PORT=5000
     ports:
@@ -42,7 +44,7 @@ services:
 
   mongodb:
     image: mongo
-    container_name: mongodb
+    container_name: nginx-mongodb
     environment:
       - PUID=1000
     volumes:
@@ -56,7 +58,7 @@ services:
 
   redis:
     image: redis
-    container_name: redisdb
+    container_name: nginx-redisdb
     restart: unless-stopped
     networks:
       - backend-network
